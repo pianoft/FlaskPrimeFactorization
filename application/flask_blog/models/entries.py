@@ -4,7 +4,7 @@ from datetime import datetime #this is a module.
 class Entry(db.Model):
     __tablename__='entries'
     id=db.Column(db.Integer,primary_key=True)#primarykey identifies the each article.So it must be distinct.
-    title=db.Column(db.String(50),unique=True)#atmost 50 moji
+    title=db.Column(db.String(50),unique=True)#
     text=db.Column(db.Text)
     created_at=db.Column(db.DateTime)
     body = db.Column(db.String(30))

@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block body %}
+<ul class="list-group list-group-flush">
+<form action="{{url_for('judge2',id=entry) }}" method=post class=add-entry>
+        <li>{{entry}}<input type="text"class="form-control"id="InputTitle"name="pms"size="5.5px" autocomplete="off"
+><button type="submit"class="btn btn-primary">提出</button></li>
+    </form>
+</ul>
+{%endblock%}

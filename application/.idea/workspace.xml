@@ -19,9 +19,16 @@
   <component name="ProjectId" id="1T2hX9x2VYGRFKKe1scWzs4tnVw" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/flask_blog" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/flask_blog" />
+      <recent name="$PROJECT_DIR$/flask_blog/templates" />
+      <recent name="$PROJECT_DIR$/flask_blog/templates/entries" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/flask_blog/views" />
     </key>

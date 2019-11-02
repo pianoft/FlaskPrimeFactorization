@@ -1,44 +1,52 @@
 <!doctype html>
-<title>flask Blog</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<title>Flask Blog</title>
+<link rel="s<<tylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.4/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudfare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css"rel="stylesheet"type="text/css">
+<link rel=stylesheet href="{{url_for('static',filename='style.css')}}">
+   <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand"href="{{url_for('show_entries')}}">flask Blog</a>
-        <button class="navbar-toggler"type="button"data-toggle="collapse"
-        data-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="flase"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <a class="navbar-brand" href="{{url_for('show_entries')}}">素因数分解の練習</a>
+            <button class="navbar-toggler"type="button" data-toggle="collapse"
+        data-target="#navbarNav"    aria-controls="navbarNav"
+        aria-expanded="false"   aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse"id="navbarNav">
-            <ul class="nav navbar-nav navbar-right">
-                {%if not session.logged_in%}
-                <li class="nav-item">
-                    <a class="nav-link"href="{{url_for('login')}}">login</a>
-                </li>
-                {%else%}
-                <li class="nav-item">
-                    <a class="nav-link"href="{{url_for('new_entry')}}">新規投稿</a>
-                    </li>
-                <li class="nav-item">
-                    <a class="nav-link"href="{{url_for('logout')}}">logout</a>
-                </li>
-                {%endif%}
-            </ul>
-        </div>
-    </nav>
-    <!--jinja2のおまじない-->
-    {%for message in get_flashed_messages()%}
-    <div class="alert alert-info"role="alert">
+        <ul class="nav navbar-nav navbar-right">
+         {%if not session.logged_in%}
+            <li class="nav-item">
+                <a class="nav-link"href="{{url_for('login')}}">login</a>
+            </li>
+           {%else%}
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('new_entry')}}">新規投稿</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"href="{{url_for('logout')}}">logout</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"href="{{url_for('shuffle')}}">shuffle</a>
+            </li>
+
+          {%endif%}
+        </ul>
+    </div>
+</nav>
+    {%for message in get_flashed_messages()%}<!-- flashのため-->
+    <div class="alert alert-info" roll="alert">
         {{message}}
     </div>
-    {%endfor%}
-    <!--jinja2のおまじない-->
+    {%endfor%}  <!-- ここまで-->
     <div class="blog-body">
-        {%block body%}{%endblock%}
+        {% block body %}{% endblock %}
     </div>
+<p><img src="/static/images/m.png"alt="pic02">
+</p><!-- this icon is for line breaking.-->
 </div>

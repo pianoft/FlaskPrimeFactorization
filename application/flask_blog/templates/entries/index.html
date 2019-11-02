@@ -1,17 +1,30 @@
-{%extends "layout.html"%}
-{%block body%}
+{% extends "layout.html" %}
+{% block body %}
+<a href="{{url_for('quiz')}}">通常モードで始める</a>
+<br>
+<a href="{{url_for('q4')}}">3の倍数達で特訓を始める</a>
+<br>
+<a href="{{url_for('q2')}}">4の倍数達で特訓を始める</a>
+<br>
+<a href="{{url_for('q3')}}">5の倍数達で特訓を始める</a>
 <ul class="list-group list-group-flush">
     {%for entry in entries%}
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">{{entry.title}}</h5>
-            <a href="{{url_for('show_entry',id=entry.id)}}"
-               class="card-link">続きを読む</a>
-        </div>
+  <div class="row">
+    <div class="col-sm">
+    <form action="{{url_for('judge',id=entry[0].id) }}" method=post class=add-entry>
+        <li>{{entry[0].body}}{{entry[0].title}}<a href="{{url_for('show_entry',id=entry[0].id)}}">確認</a>{{entry[0].cnt}}<input type="text"class="form-control"id="InputTitle"name="pms"size="5.5px"
+autocomplete="off"
+><button type="submit"class="btn btn-primary">提出</button></li>
+    </form>
     </div>
-    {%else%}
-投稿がありません
+    <div class="col-sm">
+    <form action="{{url_for('judge',id=entry[1].id) }}" method=post class=add-entry>
+        <li >{{entry[1].body}}{{entry[1].title}}<a href="{{url_for('show_entry',id=entry[1].id)}}">確認</a>{{entry[1].cnt}}<input type="text"class="form-control"id="InputTitle"name="pms"size="5.5px"
+autocomplete="off"
+><button type="submit"class="btn btn-primary">提出</button></li>
+    </form>
+    </div>
+    </div>
     {%endfor%}
 </ul>
-
 {%endblock%}
