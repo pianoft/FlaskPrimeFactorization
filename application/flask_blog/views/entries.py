@@ -61,7 +61,7 @@ def add_entry():
     db.session.add(entry)
     db.session.commit()
     idx+=1
-    flash('新しい自然数が追加された.')
+    flash('新しい問題が追加された.')
     return redirect(url_for('show_entries'))
 @app.route('/entries/new',methods=['GET'])
 @login_required
