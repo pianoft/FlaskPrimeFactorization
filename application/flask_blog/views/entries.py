@@ -83,7 +83,7 @@ def update_entry(id):
     entry=Entry.query.get(id)
     entry.title=request.form['title']
     entry.text=request.form['text']
-    entry.body='未提出.'
+    entry.body='未提出'
     db.session.merge(entry)
     db.session.commit()
     flash('The article has been updated.')
@@ -94,7 +94,7 @@ def delete_entry(id):
     entry=Entry.query.get(id)
     db.session.delete(entry)
     db.session.commit()
-    flash('指定された自然数が削除された.')
+    flash('指定された問題が削除された.')
     return redirect(url_for('show_entries'))
 @app.route('/entries/<int:id>/judge',methods=['POST','GET'])
 @login_required
