@@ -219,4 +219,3 @@ def judge2(id):
         flash("WA.  The Answer is "+str(a)+"and your input is"+str(b))
     os.system("mpg123 " + ("wa.mp3" if not a == b else "ac.mp3")+ " &")
     return redirect(url_for('show_entries')) if state==0 else redirect(url_for('q2'))
-

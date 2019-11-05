@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-<ul class="list-group list-group-flush">
+<ul class="list-group list-group-flush">asdf
 <form action="{{url_for('judge',id=entry.id) }}" method=post class=add-entry>
         <li>{{entry.body}}{{entry.title}}<a href="{{url_for('show_entry',id=entry.id)}}">確認</a>{{entry.cnt}}<input type="text"class="form-control"id="InputTitle"name="pms"size="5.5px"
 autocomplete="off"
