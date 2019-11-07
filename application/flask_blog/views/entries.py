@@ -101,8 +101,8 @@ def delete_entry(id):
 def judge(id):
     flash(id)
     entry=Entry.query.get(id)
-    a=list(entry.text.split(","))
-    b=list(request.form['pms'].split(","))
+    a=list(entry.text.split("*"))
+    b=list(request.form['pms'].split("*"))
     a.sort()
     b.sort()
     print(a)
@@ -200,7 +200,7 @@ def q4():
 @app.route('/entries/<int:id>/judge2',methods=['POST','GET'])
 @login_required
 def judge2(id):
-    b=list(request.form['pms'].split(","))
+    b=list(request.form['pms'].split("*"))
     a=[]
     m=id
     for i in range(2,id):
@@ -216,6 +216,6 @@ def judge2(id):
     if a==b:
         flash("AC")
     else:
-        flash("WA.  The Answer is "+str(a)+"and your input is"+str(b))
+        flash("WA.  The Answer is "+str(a)+"and your input is"+str(b)+"."+str(id))
     os.system("mpg123 " + ("wa.mp3" if not a == b else "ac.mp3")+ " &")
     return redirect(url_for('show_entries')) if state==0 else redirect(url_for('q2'))
