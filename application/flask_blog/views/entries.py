@@ -11,27 +11,31 @@ index=1
 idx=1
 state=0;
 a=[]
+temp=[]
 def init():
-    global a
-    b=[]
-    a=b
+    global a,temp
+    b = []
+    a = b
+    temp = b
     for i in range(104, 999):
         if i % 4 == 0 and i % 5:
             a.append(i)
     random.shuffle(a)
 def init2():
-    global a
+    global a,temp
     b = []
     a = b
+    temp = b
     for i in range(104, 999):
         if i % 5 == 0 and i % 10:
             a.append(i)
     random.shuffle(a)
 
 def init3():
-    global a
+    global a,temp
     b = []
     a = b
+    temp = b
     for i in range(104, 999):
         if i % 3 == 0 and i % 10 and i%4 and i%5:
             a.append(i)
@@ -200,6 +204,7 @@ def q4():
 @app.route('/entries/<int:id>/judge2',methods=['POST','GET'])
 @login_required
 def judge2(id):
+    global temp
     b=list(request.form['pms'].split("*"))
     a=[]
     m=id
@@ -217,5 +222,8 @@ def judge2(id):
         flash("AC")
     else:
         flash("WA.  The Answer is "+str(a)+"and your input is"+str(b)+"."+str(id))
+        temp.append(id)
     os.system("mpg123 " + ("wa.mp3" if not a == b else "ac.mp3")+ " &")
+    if state==0:
+        print(temp)
     return redirect(url_for('show_entries')) if state==0 else redirect(url_for('q2'))
