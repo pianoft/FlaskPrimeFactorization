@@ -6,6 +6,7 @@ from flask_blog.views.views import login_required
 from  sqlalchemy.sql.expression import func
 import os
 import random
+import numpy as np
 abc=Entry.query.order_by(Entry.id.desc()).all();
 index=1
 idx=1
@@ -21,16 +22,21 @@ def init():
         if i % 4 == 0 and i % 5:
             a.append(i)
     random.shuffle(a)
+def is_prime(x):
+    for i in range(2,1+int(np.sqrt(x))):
+        if x%i==0:
+            return 0
+    return 1
+
 def init2():
     global a,temp
     b = []
     a = b
     temp = b
-    for i in range(104, 999):
-        if i % 5 == 0 and i % 10:
+    for i in range(1001, 2000):
+        if is_prime(i)^1 and i%10 :
             a.append(i)
     random.shuffle(a)
-
 def init3():
     global a,temp
     b = []
@@ -40,6 +46,39 @@ def init3():
         if i % 3 == 0 and i % 10 and i%4 and i%5:
             a.append(i)
     random.shuffle(a)
+
+def init4():
+    global a, temp
+    b = []
+    a = b
+    temp = b
+    for i in range(1000, 5000):
+        if i % 2 == 0 and i % 10 :
+            a.append(i)
+    random.shuffle(a)
+def init5():
+    global a,temp
+    b = []
+    a = b
+    temp = b
+    for i in range(1000,5000):
+        if i % 3 == 0 and i % 10 and i%2 :
+            a.append(i)
+    random.shuffle(a)
+def init6():
+    global a,temp
+    b = []
+    a = b
+    temp = b
+    for i in range(1000,10000):
+        if i % 5 == 0 and i % 10 and i%4:
+            a.append(i)
+    random.shuffle(a)
+
+
+
+
+
 @app.route('/')
 @login_required#
 def show_entries():
@@ -200,6 +239,58 @@ def q4():
     state=0;
     flash("finished")
     return redirect(url_for('show_entries'))
+@app.route('/entries/q5')
+@login_required
+def q5():
+    global state,index
+    global a
+    n = len(a)
+    if state==0:
+        index=0;
+        state=1
+        init4()
+    index+=1;
+    if index-1 < n:
+        flash("今"+str(index)+"個目."+str(len(a)))
+        return render_template('entries/q2.html', entry=a[index-1])
+    state=0;
+    flash("finished")
+    return redirect(url_for('show_entries'))
+@app.route('/entries/q6')
+@login_required
+def q6():
+    global state,index
+    global a
+    n = len(a)
+    if state==0:
+        index=0;
+        state=1
+        init5()
+    index+=1;
+    if index-1 < n:
+        flash("今"+str(index)+"個目."+str(len(a)))
+        return render_template('entries/q2.html', entry=a[index-1])
+    state=0;
+    flash("finished")
+    return redirect(url_for('show_entries'))
+@app.route('/entries/q7')
+@login_required
+def q7():
+    global state,index
+    global a
+    n = len(a)
+    if state==0:
+        index=0;
+        state=1
+        init6()
+    index+=1;
+    if index-1 < n:
+        flash("今"+str(index)+"個目."+str(len(a)))
+        return render_template('entries/q2.html', entry=a[index-1])
+    state=0;
+    flash("finished")
+    return redirect(url_for('show_entries'))
+
 
 @app.route('/entries/<int:id>/judge2',methods=['POST','GET'])
 @login_required

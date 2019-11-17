@@ -2,11 +2,18 @@
 {% block body %}
 <a href="{{url_for('quiz')}}">通常モードで始める</a>
 <br>
-<a href="{{url_for('q4')}}">3の倍数達で練習を始める</a>
+<a href="{{url_for('q4')}}">3の倍数達で練習を始める(3桁)</a>
 <br>
-<a href="{{url_for('q2')}}">4の倍数達で練習を始める</a>
+<a href="{{url_for('q2')}}">4の倍数達で練習を始める(3桁)</a>
 <br>
-<a href="{{url_for('q3')}}">5の倍数達で練習を始める</a>
+<a href="{{url_for('q3')}}">mode1で練習を始める(4桁)</a>
+<br>
+<a href="{{url_for('q5')}}">2の倍数達で練習を始める(4桁)</a>
+<br>
+<a href="{{url_for('q6')}}">3の倍数達で練習を始める(4桁)</a>
+<br>
+<a href="{{url_for('q7')}}">5の倍数達で練習を始める(4桁)</a>
+<br>
 <ul class="list-group list-group-flush">
     {%for entry in entries%}
   <div class="row">
