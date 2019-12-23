@@ -33,7 +33,7 @@ def init2():
     b = []
     a = b
     temp = b
-    for i in range(1001, 2000):
+    for i in range(1001, 1400):
         if is_prime(i)^1 and i%10 :
             a.append(i)
     random.shuffle(a)
@@ -75,16 +75,13 @@ def init6():
             a.append(i)
     random.shuffle(a)
 
-
-
-
-
 @app.route('/')
 @login_required#
 def show_entries():
     global state
     global abc
-    entries=abc
+    abc = Entry.query.order_by(Entry.id.desc()).all()
+    entries = abc
     flash('現在の個数は'+str(Entry.query.count()))
     ent1 = entries[:int(len(entries)/2)]
     ent2 = entries[len(ent1):]
@@ -155,7 +152,6 @@ def judge(id):
         flash("AC")
     else:
         flash("WA.  The Answer is "+entry.text)
-
     entry.cnt += (a == b)
     db.session.merge(entry)
     db.session.commit()
@@ -175,14 +171,13 @@ def shuffle():
 @login_required
 def quiz():
     global index,state
-    entry = Entry.query.get(1)
     b=[i for i in range(1,Entry.query.count()+1)]
     if state==0:
         index=1
         random.shuffle(b)
         state=1;
     if Entry.query.count() >= index:
-        entry = Entry.query.get(b[index - 1])
+        entry = Entry.query.get(b[index])
         index += 1
         return render_template('entries/quiz.html', entry=entry)
     state=0;
