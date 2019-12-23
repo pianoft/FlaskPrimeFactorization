@@ -8,11 +8,15 @@ import os
 import random
 import numpy as np
 abc=Entry.query.order_by(Entry.id.desc()).all();
-index=1
+index=0
 idx=1
 state=0;
-a=[]
-temp=[]
+a,b,temp,=[],[],[]
+def poyo(n):
+    global b;
+    for i in range(1,n+1):
+        b.append(i)
+    return
 def init():
     global a,temp
     b = []
@@ -75,13 +79,16 @@ def init6():
             a.append(i)
     random.shuffle(a)
 
+
+
+
+
 @app.route('/')
 @login_required#
 def show_entries():
     global state
     global abc
-    abc = Entry.query.order_by(Entry.id.desc()).all()
-    entries = abc
+    entries=abc
     flash('現在の個数は'+str(Entry.query.count()))
     ent1 = entries[:int(len(entries)/2)]
     ent2 = entries[len(ent1):]
@@ -171,18 +178,28 @@ def shuffle():
 @login_required
 def quiz():
     global index,state
-    b=[i for i in range(1,Entry.query.count()+1)]
+    global b
     if state==0:
+        poyo(Entry.query.count())
         index=1
         random.shuffle(b)
         state=1;
-    if Entry.query.count() >= index:
-        entry = Entry.query.get(b[index])
+    print("状況"+str(state))
+    print("指数"+str(index))
+    print("配列bの要素数"+str(len(b)))
+    flash("配列bの要素数"+str(len(b)))
+    if Entry.query.count() < (index):
+        state=0
+        print("終了しました終了しました終了しました終了しました")
+        flash("Finished.")
+        return redirect(url_for('show_entries'))
+    if Entry.query.count() >= (index-1):
+        entry = Entry.query.get(b[index - 1])
+        flash(b[index - 1])
+        print("通過済み with"+str(index))
         index += 1
         return render_template('entries/quiz.html', entry=entry)
-    state=0;
-    flash("Finished.")
-    return redirect(url_for('show_entries'))
+    return
 @app.route('/entries/q2')
 @login_required
 def q2():
