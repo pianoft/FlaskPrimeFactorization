@@ -88,7 +88,8 @@ def init6():
 def show_entries():
     global state
     global abc
-    entries=abc
+    abc = Entry.query.order_by(Entry.id.desc()).all();
+    entries = abc
     flash('現在の個数は'+str(Entry.query.count()))
     ent1 = entries[:int(len(entries)/2)]
     ent2 = entries[len(ent1):]
